@@ -1,0 +1,23 @@
+<%- include('../../templates/node-header.ejs', {fileName: fileName}); %>
+
+
+using System;
+using Shunmu.Data;
+
+namespace <%= Namespace %>
+{
+    /// <summary>
+    /// <%=entity.note%>
+    /// </summary>
+    <%if(entity.attributes){entity.attributes.forEach(attrItem => {%>[<%-attrItem-%>]<%});};%>
+    public class <%= ClassName %>
+    {
+        <%entity.property.forEach(value => {%>
+        /// <summary>
+        /// <%=value.note%>
+        /// </summary>
+        <% if(value.attributes){value.attributes.forEach(attrItem => {%> [<%-attrItem%>] <%});};%>
+        public <%=value.type%> <%=value.name%> { get; set; }
+        <%});%>
+    }
+}
